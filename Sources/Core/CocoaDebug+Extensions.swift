@@ -266,6 +266,10 @@ extension UIWindow {
     
     
     open override var canBecomeFirstResponder: Bool {
+        // Adapted to requestReview in iOS 15+
+        if #available(iOS 15, *), NSStringFromClass(type(of: self)) == "SKStoreReviewPresentationWindow" {
+            return false
+        }
         return true
     }
     
